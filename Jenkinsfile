@@ -36,7 +36,7 @@ pipeline {
 stage('publish') {
   steps {
     script {
-      docker.withRegistry('', 'dockerhub-id') {
+      docker.withRegistry('', 'dockerhub_id') {
         docker.image("${registry}:${env.BUILD_ID}").push('latest')
       }
     }
@@ -59,6 +59,5 @@ stage('Deploy-validation') {
 }
 environment {
 registry = 'vpanton/flask-app'
-registryCredential = 'dockerhub_id'
 }
 }
