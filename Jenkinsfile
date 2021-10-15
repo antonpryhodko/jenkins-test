@@ -10,7 +10,15 @@ pipeline {
 
       }
     }
+  stage('publish') {
+      steps {
+        script {
+          checkout scm
+          def customImage = docker.build("my-image:${env.BUILD_ID}")
+        }
 
+      }
+    }
     stage('test') {
       steps {
         sh 'echo 1'
