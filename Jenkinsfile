@@ -14,7 +14,7 @@ pipeline {
     stage('test') {
       steps {
         script {
-          docker.image("my-image:${env.BUILD_ID}").withRun {c ->
+          docker.image("my-image:${env.BUILD_ID}").inside {c ->
           sh 'python app_test.py'
         }
       }
