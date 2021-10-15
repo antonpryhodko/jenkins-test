@@ -22,7 +22,7 @@ pipeline {
       }
     }
 
-    stage('test') {
+    stage('publish') {
       steps {
         sh 'echo 1'
       }
