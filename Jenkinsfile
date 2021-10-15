@@ -11,11 +11,12 @@ pipeline {
       }
     }
 
-    stage('publish') {
+    stage('test') {
       steps {
         script {
-          checkout scm
-          def customImage = docker.build("my-image:${env.BUILD_ID}")
+  docker.image("my-image:${env.BUILD_ID}").withRun {c ->
+    sh 'python app_test.py'
+  }
         }
 
       }
