@@ -59,6 +59,6 @@ stage('Deploy-validation') {
 }
 environment {
 registry = 'vpanton/flask-app'
-registryCredential = 'dockerhub'
+registryCredential = 'dockerhub_id'
 }
 }
