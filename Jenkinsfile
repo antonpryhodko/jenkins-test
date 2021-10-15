@@ -26,7 +26,7 @@ pipeline {
     steps {
       script {
         docker.image("flask-app:${env.BUILD_ID}").withRun('-p 9000:9000') {c ->
-        sh "curl -i http://localhost:9000/"
+        sh "sleep 10; curl -i http://localhost:9000/"
       }
     }
 
