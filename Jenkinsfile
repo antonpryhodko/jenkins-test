@@ -10,7 +10,8 @@ pipeline {
 
       }
     }
-  stage('publish') {
+
+    stage('publish') {
       steps {
         script {
           checkout scm
@@ -19,6 +20,7 @@ pipeline {
 
       }
     }
+
     stage('test') {
       steps {
         sh 'echo 1'
