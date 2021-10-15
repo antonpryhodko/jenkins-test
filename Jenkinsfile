@@ -41,7 +41,7 @@ stage('publish') {
 
 stage('Deploy') {
   steps {
-    sh 'docker stop flask-app; docker rm flask-app; docker run -d --name flask-app flask-app:${BUILD_ID}'
+    sh 'docker stop flask-app || true; docker rm flask-app || true; docker run -d --name flask-app flask-app:${BUILD_ID}'
   }
 }
 
