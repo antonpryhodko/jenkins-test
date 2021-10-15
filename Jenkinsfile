@@ -10,6 +10,12 @@ pipeline {
 
       }
     }
+    stage('test') {
+      steps {
+        sh 'echo 1'
+
+      }
+    }
 
     stage('Deploy') {
       steps {
