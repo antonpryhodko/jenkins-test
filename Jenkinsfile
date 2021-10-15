@@ -1,5 +1,5 @@
 pipeline {
-  {
+  environment{
     registry = "vpanton/flask-app"
     registryCredential = 'dockerhub'
   }
