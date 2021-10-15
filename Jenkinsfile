@@ -33,7 +33,7 @@ pipeline {
   }
 }
 
-stage('publish') {
+stage('Publish') {
   steps {
     script {
       docker.withRegistry('', 'dockerhub_id') {
