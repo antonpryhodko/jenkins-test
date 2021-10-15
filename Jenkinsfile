@@ -25,7 +25,7 @@ pipeline {
   stage('http-test') {
     steps {
       script {
-        docker.image("${registry}:${env.BUILD_ID}").withRun('-p 9000:9000') {c ->
+        docker.image("${registry}:${env.BUILD_ID}").withRun('-p 9000:9005') {c ->
         sh "sleep 10; curl -i http://localhost:9000/"
       }
     }
