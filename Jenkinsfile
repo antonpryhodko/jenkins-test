@@ -13,7 +13,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'docker run -d my-image:${env.BUILD_ID}'
+        sh 'docker run -d my-image:${BUILD_ID}'
       }
     }
 
