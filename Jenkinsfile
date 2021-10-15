@@ -52,7 +52,7 @@ stage('Deploy') {
 
 stage('Deploy-validation') {
   steps {
-    sh 'curl -i http://localhost:9000/'
+    sh 'curl -i http://localhost:9000/test_string'
   }
 }
 
