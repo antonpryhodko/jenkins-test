@@ -11,11 +11,22 @@ pipeline {
       }
     }
 
-    stage('test') {
+    stage('unit-test') {
       steps {
         script {
-          docker.image("my-image:${env.BUILD_ID}").inside {c ->
+          docker.image("flask-app:${env.BUILD_ID}").inside {c ->
           sh 'python app_test.py'
+        }
+      }
+
+    }
+  }
+    
+  stage('http-test') {
+      steps {
+        script {
+          docker.image("flask-app:${env.BUILD_ID}").withRun('-p 9000:9000') {c ->
+          sh "curl -i http://localhost:9000/"
         }
       }
 
@@ -30,7 +41,14 @@ pipeline {
 
   stage('Deploy') {
     steps {
-      sh 'docker run -d my-image:${BUILD_ID}'
+      sh 'docker stop flask-app
+      docker rm flask-app
+      docker run -d --name flask-app flask-app:${BUILD_ID}'
+    }
+  }
+  stage('Deploy-validation') {
+    steps {
+      sh 'curl -i http://localhost:9000/'
     }
   }
 
