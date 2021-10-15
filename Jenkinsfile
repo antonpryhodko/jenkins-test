@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           checkout scm
-          def customImage = docker.build("my-image:${env.BUILD_ID}")
+          def customImage = docker.build("flask-app:${env.BUILD_ID}")
         }
 
       }
