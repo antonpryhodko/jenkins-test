@@ -21,34 +21,35 @@ pipeline {
 
     }
   }
-    
+
   stage('http-test') {
-      steps {
-        script {
-          docker.image("flask-app:${env.BUILD_ID}").withRun('-p 9000:9000') {c ->
-          sh "curl -i http://localhost:9000/"
-        }
+    steps {
+      script {
+        docker.image("flask-app:${env.BUILD_ID}").withRun('-p 9000:9000') {c ->
+        sh "curl -i http://localhost:9000/"
       }
+    }
 
-    }
   }
+}
 
-  stage('publish') {
-    steps {
-      sh 'echo 1'
-    }
+stage('publish') {
+  steps {
+    sh 'echo 1'
   }
+}
 
-  stage('Deploy') {
-    steps {
-      sh 'docker stop flask-app; docker rm flask-app; docker run -d --name flask-app flask-app:${BUILD_ID}'
-    }
+stage('Deploy') {
+  steps {
+    sh 'docker stop flask-app; docker rm flask-app; docker run -d --name flask-app flask-app:${BUILD_ID}'
   }
-  stage('Deploy-validation') {
-    steps {
-      sh 'curl -i http://localhost:9000/'
-    }
+}
+
+stage('Deploy-validation') {
+  steps {
+    sh 'curl -i http://localhost:9000/'
   }
+}
 
 }
 }
