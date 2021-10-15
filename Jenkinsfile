@@ -13,10 +13,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        script {
-          docker.image('my-image:${env.BUILD_ID}').withRun('-p 3306:3306')
-        }
-
+        sh 'docker run -d "my-image:${env.BUILD_ID}"'
       }
     }
 
